@@ -1,0 +1,84 @@
+<h1 class="ui dividing header">Attribute Directive</h1>
+<sui-accordion class="styled fluid">
+  <sui-accordion-panel [isOpen]="true">
+    <div title>
+      <i class="dropdown icon"></i>
+      Definition
+    </div>
+    <div content>
+      <p>Attribute directive focus on changing the looks of the elements wrapped within the tag.</p>
+    </div>
+  </sui-accordion-panel>
+  <sui-accordion-panel>
+    <div title>
+      <i class="dropdown icon"></i>
+      Best Practice
+    </div>
+    <div content>
+      <p>Use Renderer2 to access the element properties, as the primitive method uses DOM to manipulate which is unsafe as DOM might not be always available.</p>
+    </div>
+  </sui-accordion-panel>
+  <sui-accordion-panel>
+    <div title>
+      <i class="dropdown icon"></i>
+      Renderer2
+    </div>
+    <div content>
+      <ul class="ui list">
+        <li><a href="https://angular.io/api/core/Renderer2">Renderer2 Official Doc</a></li>
+        <li>Most commonly used methods:
+          <ul>
+            <li>this.renderer.addClass(...)</li>
+            <li>this.renderer.removeClass(...)</li>
+            <li>this.renderer.createElement(...)</li>
+            <li>this.renderer.createText(...)</li>
+            <li>this.renderer.appendChild(...)</li>
+            <li>this.renderer.setAttribute(...)</li>
+            <li>this.renderer.setStyle(...)</li>
+            <li>this.renderer.removeStyle(...)</li>
+            <li>this.renderer.setProperty(...)</li>
+          </ul>
+        </li>
+      </ul>
+      <p appCodeSection>
+        this.renderer.setStyle(this.elmRef.nativeElement, 'background-color', 'blue');
+      </p>
+    </div>
+  </sui-accordion-panel>
+  <sui-accordion-panel>
+    <div title>
+      <i class="dropdown icon"></i>
+      Example: Highlight
+    </div>
+    <div content>
+      <h3 
+        appHighlight
+        [defaultColor]="'orange'"
+        [highlightColor]="'pink'">
+        These text will be highlighted!!
+      </h3>
+
+      <ul class="ui list">
+        <li>@HostBinding(PROPERTY_NAME) is able to access the element's properties by providing the property name. With this we can eliminate the use of renderer, however it is fine to use renderer as well.</li>
+        <li>@HostListener(HTML_ACTIONS) to provide interative actions.</li>
+      </ul>
+
+      <pre appCodeSection [align]="'left'">
+        <code>
+          @HostBinding('style.backgroundColor') backgroundColor: string;
+          @HostBinding('style.textAlign') textAlign = 'center'; 
+      
+          .....
+
+          @HostListener('mouseenter') onMouseEnter() &#123;
+            this.backgroundColor = this.highlightColor;
+          }
+
+          @HostListener('mouseleave') onMouseLeave() &#123;
+            this.backgroundColor = this.defaultColor;
+          }
+        </code>
+      </pre>
+    </div>
+  </sui-accordion-panel>
+</sui-accordion>

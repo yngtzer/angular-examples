@@ -1,0 +1,42 @@
+<h1 class="ui dividing header">Structural</h1>
+<sui-accordion class="styled fluid">
+  <sui-accordion-panel [isOpen]="true">
+    <div title>
+      <i class="dropdown icon"></i>
+      Definition
+    </div>
+    <div content>
+      <p>Responsible for shaping and reshaping the DOM's structure, typically by adding, removing, or manipulate elements.</p>
+    </div>
+  </sui-accordion-panel>
+  <sui-accordion-panel>
+    <div title>
+      <i class="dropdown icon"></i>
+      Example: Unless
+    </div>
+    <div content>
+      <div *appUnless="1===2">
+        <p>Should display some text....</p>
+      </div>
+      <br>
+      <ul class="ui list">
+        <li>A function and 'set' keyword appeared after @Input() means that whenever the value passing in changes, the function will be executed.</li>
+        <li>TemplateRef - To instantiate the embedded view declare within the opening and closing tag</li>
+        <li>ViewContainerRef - Location to place the embedded view</li>
+      </ul>
+      <pre appCodeSection [align]="left">
+        <code>
+          constructor(private templateRef: TemplateRef&#60;any>, private vcRef: ViewContainerRef) &#123; }
+
+          @Input() set appUnless(condition: boolean) &#123;
+            if (!condition) &#123;
+              this.vcRef.createEmbeddedView(this.templateRef);
+            } else &#123;
+              this.vcRef.clear();
+            }
+          }
+        </code>
+      </pre>
+    </div>
+  </sui-accordion-panel>
+</sui-accordion>
